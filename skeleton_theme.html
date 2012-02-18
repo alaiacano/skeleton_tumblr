@@ -1,0 +1,297 @@
+<html>
+    <head>
+    <title>{Title}</title>
+    <meta charset="utf-8" />
+    
+    <!-- TUMBLR OPTIONS -->
+    <meta name="text:Col2" content="">
+    <meta name="text:Col3" content="Theme created by <a href='http://adamlaiacano.tumblr.com'>Adam Laiacano</a>, based on the <a href='http://www.getskeleton.com/'>Skeleton Grid Layout</a>">
+    <meta name="text:Disqus shortname" content="">
+    
+    <meta name="text:Lastfm username">
+    <meta name="text:Lastfm apikey">
+    
+    <meta name="if:Show post notes" content="1">
+    <meta name="if:Limit images to 400px for mobile" content="1">
+
+    <meta name="author" content="Adam Laiacano">
+    {block:Description}
+            <meta name="description" content="{MetaDescription}" />
+        {/block:Description}
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+        
+    <style type="text/css">
+        /* ###################################################################### */
+        pre {
+            padding-left: 40px;
+            padding-bottom: 20px;
+        }
+        
+        a.image_caption{
+            font-size:8pt;
+            font-family:arial;
+            padding: 0;
+            position:relative;
+            top:-10px;
+        }
+        div.footer{
+            padding-bottom : 20px;
+        }
+        
+        div.post {
+            padding-bottom : 20px;
+        }
+        
+        div.quote {
+            font-style : italic;
+        }
+        
+        li {
+            list-style: disc;
+        }
+    </style>
+    
+    <!-- Basic Page Needs
+  ================================================== -->
+
+    
+    <!-- Mobile Specific Metas
+  ================================================== -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+    
+    <!-- CSS
+  ================================================== -->
+    <link rel="stylesheet" href="http://static.tumblr.com/uovukmx/YvClzabec/base.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/uovukmx/P3Zlzesub/skeleton.css">
+    <link rel="stylesheet" href="http://static.tumblr.com/uovukmx/jYflza7mg/layout.css">
+    
+
+    <!-- JS
+    ================================================== -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+    <script>window.jQuery || document.write("<script src='javascripts/jquery-1.5.1.min.js'>\x3C/script>")</script>
+    <!-- <script 
+    src="http://static.tumblr.com/uovukmx/Wfqlza7hh/app.js"></script> -->
+    <script src="http://static.tumblr.com/uovukmx/qAvlza7go/lastfm.js"></script>
+    
+
+</head>
+<body>
+
+    <!-- HEADER
+    ================================================== -->
+
+    <div class="container">    
+        <div class="sixteen columns">
+            <h1 class="remove-bottom" style="text-decoration:none; margin-top: 40px"><a href="/" style="text-decoration:none;">{Title}</a></h1>
+            {block:Description}
+                <h5 id="description">
+                    {Description}
+                    
+                    <!-- Show LastFM track -->
+                    {block:ifLastfmApikey}{block:ifLastfmUsername}
+                        <br>Currently listening to: <span id="lastfm"></span>.
+                        <script>
+                            lastfm_onetrack({screen_name:"{text:Lastfm username}", api_key:"{text:Lastfm apikey}"});
+                        </script>
+                    {/block:ifLastfmUsername}{/block:ifLastfmApikey}
+		    
+                </h5>
+            {/block:Description}
+            <hr />
+        </div>
+    </div>
+
+<!-- =============== POSTS CONTAINER ===================== -->
+<div class="container">
+{block:Posts}
+    
+    <!-- LEFT COLUMN (notes and date)-->
+    <div class="post two columns content">
+    
+          {block:Date}
+           <a href="{Permalink}" style="text-decoration:underline">{Year}-{MonthNumberWithZero}-{DayOfMonthWithZero}</a>
+          {/block:Date}
+              {block:NoteCount}
+            {lang:Notes}:
+            <span class="notecount">{NoteCount}</span>
+          {/block:NoteCount}
+          
+    </div>
+    
+    <!-- MAIN POST COLUMN -->
+    <div class="post fourteen columns content" id="post{PostID}">
+                {block:Text}
+                        <div class="post text">
+                            {block:Title}
+                                <h3><a href="{Permalink}">{Title}</a></h3>
+                            {/block:Title}
+    
+                            {Body}
+                        </div>
+                    {/block:Text}
+    
+                    {block:Photo}
+                        <div class="post photo">
+                            <img src="{PhotoURL-HighRes}" class="scale-with-grid" alt="{PhotoAlt}"/>
+                {block:HighRes}
+                    <br><a href="{PhotoURL-HighRes}">High-Res</a>
+                {/block:HighRes}
+                            {block:Caption}
+                                <div class="caption">{Caption}</div>
+                            {/block:Caption}
+                
+                        </div>
+                    {/block:Photo}
+
+                    {block:Photoset}
+                        <div class="post photoset scale-with-grid">
+
+                            {Photoset-500}
+    
+                            {block:Caption}
+                                <div class="caption">{Caption}</div>
+                            {/block:Caption}
+                        </div>
+                    {/block:Photoset}
+    
+                    {block:Quote}
+                    <div class="post">
+                        <blockquote>{Quote}</blockquote>
+		                {block:Source}
+                            <div class="source">{Source}</div>
+                        {/block:Source}
+                        </div>
+                    {/block:Quote}
+    
+                    {block:Link}
+                        <div class="post link">
+                            <h3><a href="{URL}" class="link" {Target}>{Name}</a></h3>
+                            {block:Description}
+                                <div class="description">{Description}</div>
+                            {/block:Description}
+                        </div>
+                    {/block:Link}
+    
+                    {block:Chat}
+                        <div class="post chat">
+                            {block:Title}
+                                <h3><a href="{Permalink}">{Title}</a></h3>
+                            {/block:Title}
+    
+                            <ul class="chat">
+                                {block:Lines}
+                                    <li class="{Alt} user_{UserNumber}">
+                                        {block:Label}
+                                            <span class="label">{Label}</span>
+                                        {/block:Label}
+    
+                                        {Line}
+                                    </li>
+                                {/block:Lines}
+                            </ul>
+                        </div>
+                    {/block:Chat}
+    
+                    {block:Video}
+                        <div class="post video">
+                            {Video-500}
+    
+                            {block:Caption}
+                                <div class="caption">{Caption}</div>
+                            {/block:Caption}
+                        </div>
+                    {/block:Video}
+    
+                    {block:Audio}
+                        <div class="post audio">
+                            {AudioPlayerBlack}
+    
+                            {block:Caption}
+                                <div class="caption">{Caption}</div>
+                            {/block:Caption}
+                        </div>
+                    {/block:Audio}
+                
+            
+        
+        {block:RebloggedFrom}
+            <div class="reblog">
+            <!-- REBLOG INFO -->
+            {lang:Reblogged from ReblogParentName 2}
+            </div>
+        {/block:RebloggedFrom}
+        
+        <!-- TAGS -->
+        {block:HasTags}
+            <div class="tags">
+            Tags:
+            {block:Tags}
+                    <a href="{TagURL}">{Tag}</a>
+            {/block:Tags}
+            </div>
+        {/block:HasTags}
+        
+        {block:PermalinkPage}
+            <!-- Notes on permalink -->
+            {block:IfShowPostNotes}<hr>{PostNotes}{/block:IfShowPostNotes}    
+        
+            <!-- Disquss -->
+            {block:IfDisqusShortname}
+            <hr>
+        
+            <div class="notecontainer">
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+              <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+            </div>
+        
+        {/block:IfDisqusShortname}
+        {block:PermalinkPage} 
+    <hr>
+    </div>
+{/block:Posts}
+</div> <!-- end post container -->
+
+    <!-- FOOTER
+    ================================================== -->
+
+    <div class="container">    
+    <div class="one-third column content footer">
+        {block:Pagination}
+            {block:PreviousPage}
+                <a href="{PreviousPage}">Previous</a> |
+            {/block:PreviousPage}
+        {/block:Pagination}
+            <a href="/archive">Archive</a>
+        {block:Pagination}
+            {block:NextPage}
+                | <a href="{NextPage}">Next</a>
+            {/block:NextPage}
+        <br>
+        {/block:Pagination}
+        
+        {block:AskEnabled}
+            <a href="/ask">{AskLabel}</a>
+        {/block:AskEnabled}
+    </div>
+    
+
+    {block:IfCol2}
+    <div class="one-third column content footer">
+        {text:Col2}
+    </div>
+    {/block:IfCol2}
+    
+    <div class="one-third column content footer">
+        {block:IfCol3}
+        {text:Col3}
+        {/block:IfCol3}
+    </div>
+    </div>
+
+
+</body>
+</html>
