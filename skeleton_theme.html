@@ -149,7 +149,7 @@ https://github.com/alaiacano/skeleton_tumblr
     
                     {block:Photo}
                         <div class="post photo">
-                            <img src="{PhotoURL-HighRes}" class="scale-with-grid" alt="{PhotoAlt}"/>
+                            <img src="{PhotoURL-500}" class="scale-with-grid" alt="{PhotoAlt}"/>
                 {block:HighRes}
                     <br><a href="{PhotoURL-HighRes}">High-Res</a>
                 {/block:HighRes}
@@ -212,7 +212,6 @@ https://github.com/alaiacano/skeleton_tumblr
                     {block:Video}
                         <div class="post video">
                             {Video-500}
-    
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
@@ -264,9 +263,11 @@ https://github.com/alaiacano/skeleton_tumblr
         
         {/block:IfDisqusShortname}
         {block:PermalinkPage} 
-    <hr>
+
     </div>
-{/block:Posts}
+    <hr>
+    {/block:Posts}
+
 </div> <!-- end post container -->
 
     <!-- FOOTER
