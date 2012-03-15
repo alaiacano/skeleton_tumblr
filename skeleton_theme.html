@@ -21,7 +21,7 @@ https://github.com/alaiacano/skeleton_tumblr
     <meta charset="utf-8" />
     
     <!-- TUMBLR OPTIONS -->
-    <meta name="text:Col2" content="">
+    <meta name="text:Col2" content=" ">
     <meta name="text:Col3" content="Theme created by <a href='http://adamlaiacano.tumblr.com'>Adam Laiacano</a>, based on the <a href='http://www.getskeleton.com/'>Skeleton Grid Layout</a>">
     <meta name="text:Disqus shortname" content="">
     
@@ -165,9 +165,10 @@ https://github.com/alaiacano/skeleton_tumblr
 
                     {block:Photoset}
                         <div class="post photoset scale-with-grid">
-
-                            {Photoset-500}
-    
+			    {block:Photos}
+			        <a href="{PhotoURL-HighRes}"><img
+                        src="{PhotoURL-500}" class="scale-with-grid"></a>
+			    {/block:Photos}
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
@@ -299,6 +300,7 @@ https://github.com/alaiacano/skeleton_tumblr
 
     {block:IfCol2}
     <div class="one-third column content footer">
+        &nbsp;
         {text:Col2}
     </div>
     {/block:IfCol2}
