@@ -76,6 +76,27 @@ https://github.com/alaiacano/skeleton_tumblr
     <!-- Mobile Specific Metas
   ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+	<script language="JavaScript">
+		// Code lifted from http://www.abeautifulsite.net/blog/2011/11/detecting-mobile-devices-with-javascript/
+		var isMobile = {
+		    Android: function() {
+		        return navigator.userAgent.match(/Android/i) ? true : false;
+		    },
+		    BlackBerry: function() {
+		        return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+		    },
+		    iOS: function() {
+		        return navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
+		    },
+		    Windows: function() {
+		        return navigator.userAgent.match(/IEMobile/i) ? true : false;
+		    },
+		    any: function() {
+		        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+		    }
+		};
+	</script>
+
     
     <!-- CSS
   ================================================== -->
@@ -151,11 +172,30 @@ https://github.com/alaiacano/skeleton_tumblr
                     {/block:Text}
     
                     {block:Photo}
+						<script> HI_RES = false; </script>
+						{block:HighRes}
+						<script> HI_RES = true; </script>
+						{/block:HighRes}
                         <div class="post photo">
-                            <img src="{PhotoURL-500}" class="scale-with-grid" alt="{PhotoAlt}"/>
-                {block:HighRes}
-                    <br><a href="{PhotoURL-HighRes}">High-Res</a>
-                {/block:HighRes}
+							{LinkOpenTag}
+								<script language="JavaScript">
+									if( isMobile.any() || HI_RES == false) {
+										document.write('<img src="{PhotoURL-500}" class="scale-with-grid" border=0/>\n');
+									} else {
+										{block:HighRes}
+										document.write('<img src="{PhotoURL-HighRes}" class="scale-with-grid" border=0/>');
+										{/block:HighRes}
+									}
+								</script>
+							{LinkCloseTag}
+							{block:HighRes}
+							<script>
+							// hi res link on mobile if it exists
+							if ( isMobile.any() )
+								document.write('<br><a href="{PhotoURL-HighRes}">High-Res</a>');
+							</script>
+							{/block:HighRes}
+			                
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
@@ -224,7 +264,10 @@ https://github.com/alaiacano/skeleton_tumblr
     
                     {block:Audio}
                         <div class="post audio">
-                            {AudioPlayerBlack}
+							{block:AlbumArt}
+							{AlbumArtURL}<br>
+							{/block:AlbumArt}
+                            {AudioPlayerWhite}
     
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
