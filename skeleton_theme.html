@@ -184,9 +184,7 @@ https://github.com/alaiacano/skeleton_tumblr
                                     if( isMobile.any() || HI_RES == false) {
                                         document.write('<img src="{PhotoURL-500}" class="scale-with-grid" border=0/>\n');
                                     } else {
-                                        {block:HighRes}
                                         document.write('<img src="{PhotoURL-HighRes}" class="scale-with-grid" border=0/>');
-                                        {/block:HighRes}
                                     }
                                 </script>
                             {LinkCloseTag}
@@ -207,10 +205,9 @@ https://github.com/alaiacano/skeleton_tumblr
 
                     {block:Photoset}
                         <div class="post photoset scale-with-grid">
-                {block:Photos}
-                    <a href="{PhotoURL-HighRes}"><img
-                        src="{PhotoURL-500}" class="scale-with-grid"></a>
-                {/block:Photos}
+                            {block:Photos}
+                                <a href="{PhotoURL-HighRes}"><img src="{PhotoURL-500}" class="scale-with-grid"></a>
+                            {/block:Photos}
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
@@ -295,10 +292,12 @@ https://github.com/alaiacano/skeleton_tumblr
             {/block:Tags}
             </div>
         {/block:HasTags}
+
         <!-- CAMERA TYPE -->        
         {block:Exif} {block:Camera}
-            Taken with {Camera}
+            Camera: {Camera}
         {/block:Camera}{/block:Exif}
+
         {block:PermalinkPage}
             <!-- Notes on permalink -->
             {block:IfShowPostNotes}<hr>{PostNotes}{/block:IfShowPostNotes}    
