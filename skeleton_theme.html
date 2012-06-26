@@ -71,36 +71,36 @@ https://github.com/alaiacano/skeleton_tumblr
     
     <!-- Basic Page Needs
   ================================================== -->
-	<style type="text/css">
-		iframe#tumblr_controls {
-		top: 0% !important;
-		right:0% !important; 
-		position: fixed !important;}
-	}
-	</style>
+    <style type="text/css">
+        iframe#tumblr_controls {
+        top: 0% !important;
+        right:0% !important; 
+        position: fixed !important;}
+    }
+    </style>
     <!-- Mobile Specific Metas
   ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-	<script language="JavaScript">
-		// Code lifted from http://www.abeautifulsite.net/blog/2011/11/detecting-mobile-devices-with-javascript/
-		var isMobile = {
-		    Android: function() {
-		        return navigator.userAgent.match(/Android/i) ? true : false;
-		    },
-		    BlackBerry: function() {
-		        return navigator.userAgent.match(/BlackBerry/i) ? true : false;
-		    },
-		    iOS: function() {
-		        return navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
-		    },
-		    Windows: function() {
-		        return navigator.userAgent.match(/IEMobile/i) ? true : false;
-		    },
-		    any: function() {
-		        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
-		    }
-		};
-	</script>
+    <script language="JavaScript">
+        // Code lifted from http://www.abeautifulsite.net/blog/2011/11/detecting-mobile-devices-with-javascript/
+        var isMobile = {
+            Android: function() {
+                return navigator.userAgent.match(/Android/i) ? true : false;
+            },
+            BlackBerry: function() {
+                return navigator.userAgent.match(/BlackBerry/i) ? true : false;
+            },
+            iOS: function() {
+                return navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
+            },
+            Windows: function() {
+                return navigator.userAgent.match(/IEMobile/i) ? true : false;
+            },
+            any: function() {
+                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
+            }
+        };
+    </script>
 
     
     <!-- CSS
@@ -140,7 +140,7 @@ https://github.com/alaiacano/skeleton_tumblr
                             lastfm_onetrack({screen_name:"{text:Lastfm username}", api_key:"{text:Lastfm apikey}"});
                         </script>
                     {/block:ifLastfmUsername}{/block:ifLastfmApikey}
-		    
+            
                 </h5>
             {/block:Description}
             <hr />
@@ -177,30 +177,27 @@ https://github.com/alaiacano/skeleton_tumblr
                     {/block:Text}
     
                     {block:Photo}
-						<script> HI_RES = false; </script>
-						{block:HighRes}
-						<script> HI_RES = true; </script>
-						{/block:HighRes}
+                        <script> HI_RES = 0{block:HighRes}+1{/block:HighRes}; </script>
                         <div class="post photo">
-							{LinkOpenTag}
-								<script language="JavaScript">
-									if( isMobile.any() || HI_RES == false) {
-										document.write('<img src="{PhotoURL-500}" class="scale-with-grid" border=0/>\n');
-									} else {
-										{block:HighRes}
-										document.write('<img src="{PhotoURL-HighRes}" class="scale-with-grid" border=0/>');
-										{/block:HighRes}
-									}
-								</script>
-							{LinkCloseTag}
-							{block:HighRes}
-							<script>
-							// hi res link on mobile if it exists
-							if ( isMobile.any() )
-								document.write('<br><a href="{PhotoURL-HighRes}">High-Res</a>');
-							</script>
-							{/block:HighRes}
-			                
+                            {LinkOpenTag}
+                                <script language="JavaScript">
+                                    if( isMobile.any() || HI_RES == false) {
+                                        document.write('<img src="{PhotoURL-500}" class="scale-with-grid" border=0/>\n');
+                                    } else {
+                                        {block:HighRes}
+                                        document.write('<img src="{PhotoURL-HighRes}" class="scale-with-grid" border=0/>');
+                                        {/block:HighRes}
+                                    }
+                                </script>
+                            {LinkCloseTag}
+                            {block:HighRes}
+                            <script>
+                            // hi res link on mobile if it exists
+                            if ( isMobile.any() )
+                                document.write('<br><a href="{PhotoURL-HighRes}">High-Res</a>');
+                            </script>
+                            {/block:HighRes}
+                            
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
@@ -210,10 +207,10 @@ https://github.com/alaiacano/skeleton_tumblr
 
                     {block:Photoset}
                         <div class="post photoset scale-with-grid">
-			    {block:Photos}
-			        <a href="{PhotoURL-HighRes}"><img
+                {block:Photos}
+                    <a href="{PhotoURL-HighRes}"><img
                         src="{PhotoURL-500}" class="scale-with-grid"></a>
-			    {/block:Photos}
+                {/block:Photos}
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
@@ -223,7 +220,7 @@ https://github.com/alaiacano/skeleton_tumblr
                     {block:Quote}
                     <div class="post">
                         <blockquote>{Quote}</blockquote>
-		                {block:Source}
+                        {block:Source}
                             <div class="source">{Source}</div>
                         {/block:Source}
                         </div>
@@ -269,9 +266,9 @@ https://github.com/alaiacano/skeleton_tumblr
     
                     {block:Audio}
                         <div class="post audio">
-							{block:AlbumArt}
-							{AlbumArtURL}<br>
-							{/block:AlbumArt}
+                            {block:AlbumArt}
+                            {AlbumArtURL}<br>
+                            {/block:AlbumArt}
                             {AudioPlayerWhite}
     
                             {block:Caption}
