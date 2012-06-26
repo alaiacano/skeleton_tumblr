@@ -298,7 +298,10 @@ https://github.com/alaiacano/skeleton_tumblr
             {/block:Tags}
             </div>
         {/block:HasTags}
-        
+        <!-- CAMERA TYPE -->        
+        {block:Exif} {block:Camera}
+            Taken with {Camera}
+        {/block:Camera}{/block:Exif}
         {block:PermalinkPage}
             <!-- Notes on permalink -->
             {block:IfShowPostNotes}<hr>{PostNotes}{/block:IfShowPostNotes}    
