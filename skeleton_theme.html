@@ -21,7 +21,7 @@ https://github.com/alaiacano/skeleton_tumblr
     <meta charset="utf-8" />
     
     <!-- TUMBLR OPTIONS -->
-    <meta name="text:Col2" content=" ">
+    <meta name="text:Col2" content="">
     <meta name="text:Col3" content="Theme created by <a href='http://adamlaiacano.tumblr.com'>Adam Laiacano</a>, based on the <a href='http://www.getskeleton.com/'>Skeleton Grid Layout</a>">
     <meta name="text:Disqus shortname" content="">
     
@@ -45,6 +45,15 @@ https://github.com/alaiacano/skeleton_tumblr
             padding-bottom: 20px;
         }
         
+        li.chat{
+            list-style-type: none;
+        }
+
+        ul.chat{
+            margin-left: 0; 
+            padding-left: 0;
+        }
+
         a.image_caption{
             font-size:8pt;
             font-family:arial;
@@ -71,37 +80,11 @@ https://github.com/alaiacano/skeleton_tumblr
     
     <!-- Basic Page Needs
   ================================================== -->
-    <style type="text/css">
-        iframe#tumblr_controls {
-        top: 0% !important;
-        right:0% !important; 
-        position: fixed !important;}
-    }
-    </style>
+
+    
     <!-- Mobile Specific Metas
   ================================================== -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
-    <script language="JavaScript">
-        // Code lifted from http://www.abeautifulsite.net/blog/2011/11/detecting-mobile-devices-with-javascript/
-        var isMobile = {
-            Android: function() {
-                return navigator.userAgent.match(/Android/i) ? true : false;
-            },
-            BlackBerry: function() {
-                return navigator.userAgent.match(/BlackBerry/i) ? true : false;
-            },
-            iOS: function() {
-                return navigator.userAgent.match(/iPhone|iPod/i) ? true : false;
-            },
-            Windows: function() {
-                return navigator.userAgent.match(/IEMobile/i) ? true : false;
-            },
-            any: function() {
-                return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Windows());
-            }
-        };
-    </script>
-
     
     <!-- CSS
   ================================================== -->
@@ -177,25 +160,11 @@ https://github.com/alaiacano/skeleton_tumblr
                     {/block:Text}
     
                     {block:Photo}
-                        <script> HI_RES = 0{block:HighRes}+1{/block:HighRes}; </script>
                         <div class="post photo">
-                            {LinkOpenTag}
-                                <script language="JavaScript">
-                                    if( isMobile.any() || HI_RES == false) {
-                                        document.write('<img src="{PhotoURL-500}" class="scale-with-grid" border=0/>\n');
-                                    } else {
-                                        document.write('<img src="{PhotoURL-HighRes}" class="scale-with-grid" border=0/>');
-                                    }
-                                </script>
-                            {LinkCloseTag}
-                            {block:HighRes}
-                            <script>
-                            // hi res link on mobile if it exists
-                            if ( isMobile.any() )
-                                document.write('<br><a href="{PhotoURL-HighRes}">High-Res</a>');
-                            </script>
-                            {/block:HighRes}
-                            
+                            <img src="{PhotoURL-HighRes}" class="scale-with-grid" alt="{PhotoAlt}"/>
+                {block:HighRes}
+                    <br><a href="{PhotoURL-HighRes}">High-Res</a>
+                {/block:HighRes}
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
@@ -205,9 +174,9 @@ https://github.com/alaiacano/skeleton_tumblr
 
                     {block:Photoset}
                         <div class="post photoset scale-with-grid">
-                            {block:Photos}
-                                <a href="{PhotoURL-HighRes}"><img src="{PhotoURL-500}" class="scale-with-grid"></a>
-                            {/block:Photos}
+
+                            {Photoset-500}
+    
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
@@ -240,7 +209,7 @@ https://github.com/alaiacano/skeleton_tumblr
     
                             <ul class="chat">
                                 {block:Lines}
-                                    <li class="{Alt} user_{UserNumber}">
+                                    <li class="{Alt} user_{UserNumber} chat">
                                         {block:Label}
                                             <span class="label">{Label}</span>
                                         {/block:Label}
@@ -255,6 +224,7 @@ https://github.com/alaiacano/skeleton_tumblr
                     {block:Video}
                         <div class="post video">
                             {Video-500}
+    
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
@@ -263,10 +233,7 @@ https://github.com/alaiacano/skeleton_tumblr
     
                     {block:Audio}
                         <div class="post audio">
-                            {block:AlbumArt}
-                            {AlbumArtURL}<br>
-                            {/block:AlbumArt}
-                            {AudioPlayerWhite}
+                            {AudioPlayerBlack}
     
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
@@ -292,12 +259,7 @@ https://github.com/alaiacano/skeleton_tumblr
             {/block:Tags}
             </div>
         {/block:HasTags}
-
-        <!-- CAMERA TYPE -->        
-        {block:Exif} {block:Camera}
-            Camera: {Camera}
-        {/block:Camera}{/block:Exif}
-
+        
         {block:PermalinkPage}
             <!-- Notes on permalink -->
             {block:IfShowPostNotes}<hr>{PostNotes}{/block:IfShowPostNotes}    
@@ -306,6 +268,59 @@ https://github.com/alaiacano/skeleton_tumblr
             {block:IfDisqusShortname}
             <hr>
         
+            <div class="notecontainer">
+              <div id="disqus_thread"></div>
+              <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+              <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+            </div>
+        
+        {/block:IfDisqusShortname}
+        {block:PermalinkPage} 
+    <hr>
+    </div>
+{/block:Posts}
+</div> <!-- end post container -->
+
+    <!-- FOOTER
+    ================================================== -->
+
+    <div class="container">    
+    <div class="one-third column content footer">
+        {block:Pagination}
+            {block:PreviousPage}
+                <a href="{PreviousPage}">Previous</a> |
+            {/block:PreviousPage}
+        {/block:Pagination}
+            <a href="/archive">Archive</a>
+        {block:Pagination}
+            {block:NextPage}
+                | <a href="{NextPage}">Next</a>
+            {/block:NextPage}
+        <br>
+        {/block:Pagination}
+        
+        {block:AskEnabled}
+            <a href="/ask">{AskLabel}</a>
+        {/block:AskEnabled}
+    </div>
+    
+
+    {block:IfCol2}
+    <div class="one-third column content footer">
+        {text:Col2}
+    </div>
+    {/block:IfCol2}
+    
+    <div class="one-third column content footer">
+        {block:IfCol3}
+        {text:Col3}
+        {/block:IfCol3}
+    </div>
+    </div>
+
+
+</body>
+</html>  
             <div class="notecontainer">
               <div id="disqus_thread"></div>
               <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
@@ -330,6 +345,38 @@ https://github.com/alaiacano/skeleton_tumblr
             {block:PreviousPage}
                 <a href="{PreviousPage}">Previous</a> |
             {/block:PreviousPage}
+        {/block:Pagination}
+            <a href="/archive">Archive</a>
+        {block:Pagination}
+            {block:NextPage}
+                | <a href="{NextPage}">Next</a>
+            {/block:NextPage}
+        <br>
+        {/block:Pagination}
+        
+        {block:AskEnabled}
+            <a href="/ask">{AskLabel}</a>
+        {/block:AskEnabled}
+    </div>
+    
+
+    {block:IfCol2}
+    <div class="one-third column content footer">
+        &nbsp;
+        {text:Col2}
+    </div>
+    {/block:IfCol2}
+    
+    <div class="one-third column content footer">
+        {block:IfCol3}
+        {text:Col3}
+        {/block:IfCol3}
+    </div>
+    </div>
+
+
+</body>
+</html>     {/block:PreviousPage}
         {/block:Pagination}
             <a href="/archive">Archive</a>
         {block:Pagination}
