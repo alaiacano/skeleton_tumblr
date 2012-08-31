@@ -144,6 +144,12 @@ https://github.com/alaiacano/skeleton_tumblr
             {lang:Notes}:
             <span class="notecount">{NoteCount}</span>
           {/block:NoteCount}
+          {block:PermalinkPage}
+
+          {block:HighRes}
+            <br><font size='-2'><a href="{PhotoURL-HighRes}">High-Res</a></font>
+          {/block:HighRes}
+          {/block:PermalinkPage}
           
     </div>
     
@@ -162,9 +168,7 @@ https://github.com/alaiacano/skeleton_tumblr
                     {block:Photo}
                         <div class="post photo">
                             <img src="{PhotoURL-HighRes}" class="scale-with-grid" alt="{PhotoAlt}"/>
-                {block:HighRes}
-                    <br><a href="{PhotoURL-HighRes}">High-Res</a>
-                {/block:HighRes}
+                
                             {block:Caption}
                                 <div class="caption">{Caption}</div>
                             {/block:Caption}
