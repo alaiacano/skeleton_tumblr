@@ -246,25 +246,44 @@ https://github.com/alaiacano/skeleton_tumblr
                     {/block:Audio}
                 
             
-        
-        {block:RebloggedFrom}
-            <div class="reblog">
-            <!-- REBLOG INFO -->
-            {lang:Reblogged from ReblogParentName 2}
+        {block:ContentSource}
+            <div style='display:none'>
+                <a href="{SourceURL}">
+                    {lang:Source}:
+                    {block:NoSourceLogo}
+                        {SourceTitle}
+                    {/block:NoSourceLogo}
+                </a>
             </div>
-        {/block:RebloggedFrom}
-        
-        <!-- TAGS -->
-        {block:HasTags}
-            <div class="tags">
-            Tags:
-            {block:Tags}
-                    <a href="{TagURL}">{Tag}</a>
-            {/block:Tags}
-            </div>
-        {/block:HasTags}
-        
+        {/block:ContentSource}
         {block:PermalinkPage}
+
+            {block:ContentSource}
+                {lang:Source}:
+                <a href="{SourceURL}">
+                    {block:NoSourceLogo}
+                        {SourceTitle}
+                    {/block:NoSourceLogo}
+                </a>
+            {/block:ContentSource}
+            {block:RebloggedFrom}
+                <div class="reblog">
+                <!-- REBLOG INFO -->
+                {lang:Reblogged from ReblogParentName 2}
+                </div>
+            {/block:RebloggedFrom}
+
+            <!-- TAGS -->
+            {block:HasTags}
+                <div class="tags">
+                Tags:
+                {block:Tags}
+                        <a href="{TagURL}">{Tag}</a>
+                {/block:Tags}
+                </div>
+            {/block:HasTags}
+        
+        
             <!-- Notes on permalink -->
             {block:IfShowPostNotes}<hr>{PostNotes}{/block:IfShowPostNotes}    
         
